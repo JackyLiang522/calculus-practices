@@ -109,7 +109,7 @@ $f(x,y)=\sqrt{(x^2+y^2)}$
 
 ### 可微$\Rightarrow $连续
 
-<img src="/res/证明1.png" style="zoom:50%;" />
+<img src="/res/证明1.png" style="zoom:80%;" />
 
 ### 偏导存在$\nRightarrow $可微
 
@@ -123,15 +123,50 @@ $f(x,y)=\sqrt{(x^2+y^2)}$
 
 根据定义，可微是偏导存在的必要条件，所以函数可微则偏导存在
 
-### 偏导连续$\nRightarrow $可微
+### 可微$\nRightarrow $偏导连续
+
+反例：
+
+$f(x,y)= \begin{cases} (x^2+y^2)sin\frac{1}{x^2+y^2}, &x^2+y^2\neq0 \\ 0,&x^2+y^2 =0\end{cases}$
+$$
+根据定义\\\\
+当x^2+y^2=0,f_x(0,0)=\lim_{\Delta x\to0} \frac{f(0+\Delta x)-f(0,0)}{\Delta x}=\lim_{\Delta x\to0} \Delta xsin\frac{1}{\Delta x^2}=0\\\\
+当x^2+y^2\neq0,f_x(x,y)=2xsin\frac{1}{x^2+y^2}-\frac{2x}{x^2+y^2}cos\frac{1}{x^2+y^2}
+\\\\
+\lim_{(x,y)\to(0,0)}f_x(x,y)不存在，该函数在原点为震荡不连续点\\\\
+\Delta z=f(x,y)-f(0,0)=(\Delta x^2+\Delta y^2)sin\frac{1}{\Delta x^2+\Delta y^2}\\\\
+因为f_x(0,0)\Delta x+f_y(0,0)\Delta y=0\\\\
+\Delta z-f_x(0,0)\Delta x+f_y(0,0)\Delta y\\\\=(\Delta x^2+\Delta y^2)sin\frac{1}{\Delta x^2+\Delta y^2}=\Delta x^2sin\frac{1}{\Delta x^2+\Delta y^2}+\Delta y^2sin\frac{1}{\Delta x^2+\Delta y^2}\\\\
+=\Delta x(\Delta xsin\frac{1}{\Delta x^2+\Delta y^2})+\Delta y(\Delta ysin\frac{1}{\Delta x^2+\Delta y^2})\\\\
+当\Delta x\to0,\Delta y\to0时，\Delta xsin\frac{1}{\Delta x^2+\Delta y^2}\to0且\Delta ysin\frac{1}{\Delta x^2+\Delta y^2}\to0\\\\
+函数可微
+$$
 
 
+### 偏导连续$\Rightarrow $可微
 
-### 可微$\Rightarrow $偏导连续
+终于到了揭晓答案的时候了，偏导连续可以推出可微吗？
 
+我们来看看中文书的证明
 
+<img src="/res/证明2.png" style="zoom:100%;" />
+
+证明过程中有一个问题，这个证明用到了 $f(y+\Delta y)$ ，然而在我们的反例中 $f(y+\Delta y)$ 是不在定义域内的（因为定义域只包含 $y=0$ 的点）。难道中文书证明错了？？？
+
+**NO！**观察仔细的同学会发现中文书第72页小字写道
+
+> 多元函数的偏导数在一点连续是指：偏导数在该点的某个邻域内存在
+
+噢，根据这个定义，偏导数必须在原点附近的邻域内存在，而原函数在原点附近的邻域是不止包含 $y=0$ 的点的，所以不满足偏导连续的条件。自然也就无法推出函数可微了。
 
 ## 结论
 
-为了减少误解，我们还是把关系图改成这样吧！
+根据英文书第820页推论
 
+> **COROLLARY OF THEOREM 3** If the partial derivatives $f_x$ and $f_y$ of a function  $f(x,y)$ are continuous throughout an open region $R$, then $f(x,y)$ is differentiable at every point of $R$
+
+偏导数如果在一点的**邻域内**连续，则函数在该领域内**处处可微**。
+
+所以，为了减少误解，我们还是把关系图改成这样吧！
+
+<img src="/res/关系2.png" style="zoom:70%;" />
